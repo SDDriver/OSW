@@ -1,0 +1,90 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+<body onload="mobile_check()">
+<div class="container">
+  <div class="row mt-3">
+      <div class="col-9">
+          <h5 class="text-center text-uppercase color1">Тема 1. Российское законодательство в области промышленной безопасности. Ответственность</h5>
+      </div>
+      <div class="col-3">
+          <a id="link_id" href="/#section_1"  class="btn btn-sm text-uppercase btn-main mt-3">Завершить</a>
+      </div>
+  </div>
+</div>
+<div id="carouselExampleIndicators" class="carousel slide my_carousel" data-bs-theme="dark" data-bs-interval="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10" aria-label="Slide 11"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11" aria-label="Slide 12"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="12" aria-label="Slide 13"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="13" aria-label="Slide 14"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/theme1/theme1slide - 01.png' %}" class="d-block w-100" alt="slide1">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 02.png' %}" class="d-block w-100" alt="slide2">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 03.png' %}" class="d-block w-100" alt="slide3">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 04.png' %}" class="d-block w-100" alt="slide4">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 05.png' %}" class="d-block w-100" alt="slide5">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 06.png' %}" class="d-block w-100" alt="slide6">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 07.png' %}" class="d-block w-100" alt="slide7">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 08.png' %}" class="d-block w-100" alt="slide10">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 09.png' %}" class="d-block w-100" alt="slide11">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 10.png' %}" class="d-block w-100" alt="slide12">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 11.png' %}" class="d-block w-100" alt="slide13">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 12.png' %}" class="d-block w-100" alt="slide14">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 13.png' %}" class="d-block w-100" alt="slide15">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/theme1/theme1slide - 14.png' %}" class="d-block w-100" alt="slide16">
+    </div>
+
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+
+</div>
+</body>
+
+{% endblock %}

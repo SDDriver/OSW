@@ -1,0 +1,144 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+<body>
+<!--Заголовок-->
+     <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-white">Общие вопросы промышленной безопасности</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+<!--Кнопки заголовка-->
+    <section class="section-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 mb-sm-5">
+                    <div class="my_circle">
+                        <i class="icon-book first-icons"></i>
+                    </div>
+                    <a href="#section_1" class="btn btn-lg text-uppercase btn-main">Теория</a>
+                </div>
+                <div class="col-lg-6 col-sm-12 mt-1">
+                     <div class="my_circle">
+                        <i class="icon-list-bullet first-icons"></i>
+                     </div>
+                    <a href="#section_2" class="btn btn-lg text-uppercase btn-main">Тестирование</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Секция о сайте-->
+     <section id="section_0">
+         <div class="container">
+             <div class="row">
+                 <div class="col-12">
+                     <h2 class="text-center text-uppercase color1 mb-5">О сайте</h2>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="row align-items-center">
+                     <div class="col-sm-12 col-lg-12 text-center">
+                         <h5>Материалы сайта предназначены для подготовки к аттестации в области промышленной безопасности (область аттестации А1) в виде тестирования</h5>
+                         <h5>В разделе "Теория" приведены ссылки на нормативные акты, в которых содержатся ответы на вопросы тестирования</h5>
+                         <h5>В разделе "Тестирование" представлены пробное тестирование по билетам (9 билетов, 182 вопроса) и пробный экзамен (20 вопросов)</h5>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+<!--Секция теории-->
+    <section id="section_1">
+        <div class="container">
+            <div class="row">
+                 <div class="col-12">
+                     <h2 class="text-center text-uppercase color1 mb-5">Теория</h2>
+                 </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/1" class="btn btn-lg text-uppercase btn-theme">Российское законодательство в области промышленной безопасности. Ответственность</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/2" class="btn btn-lg text-uppercase btn-theme">Российское законодательство в области градостроительной деятельности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/3" class="btn btn-lg text-uppercase btn-theme">Техническое регулирование. Требования к техническим устройствам, применяемым на ОПО</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/4" class="btn btn-lg text-uppercase btn-theme">Лицензирование в области промышленной безопасности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/5" class="btn btn-lg text-uppercase btn-theme">Порядок расследования причин аварий и инцидентов на ОПО</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/6" class="btn btn-lg text-uppercase btn-theme">Обязательное страхование гражданской ответственности за причинение вреда при эксплуатации ОПО</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                     <a href="/theme/7" class="btn btn-lg text-uppercase btn-theme">Регистрация опасных производственных объектов</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/8" class="btn btn-lg text-uppercase btn-theme">Обязанности организаций в обеспечении промышленной безопасности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <a href="/theme/9" class="btn btn-lg text-uppercase btn-theme">Экспертиза промышленной безопасности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                     <a href="/theme/10" class="btn btn-lg text-uppercase btn-theme">Декларирование промышленной безопасности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                     <a href="/theme/11" class="btn btn-lg text-uppercase btn-theme">Аттестация в области промышленной безопасности</a>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                     <a href="/theme/12" class="btn btn-lg text-uppercase btn-theme">Планирование мероприятий по локализации и ликвидации последствий аварий</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Секция тестирования-->
+    <section id="section_2">
+        <div class="container">
+             <div class="row">
+                 <div class="col-12">
+                     <h2 class="text-center text-uppercase color1 mb-5">Тестирование</h2>
+                 </div>
+             </div>
+            <div class="row mt-5 mb-5">
+                <div class="col-sm-12 col-lg-6 mb-sm-5">
+                    <div class="my_circle2">
+                        <i class="icon-docs second-icons"></i>
+                    </div>
+                    <a href="{% url 'test' %}" class="btn btn-lg text-uppercase btn-main">Билеты</a>
+                </div>
+                <div class="col-sm-12 col-lg-6 mt-1">
+                    <div class="my_circle2">
+                        <i class="icon-graduation-cap second-icons"></i>
+                    </div>
+                    <a href="{% url 'exam' %}" class="btn btn-lg text-uppercase btn-main">Экзамен</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Секция Footer-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>Александр Сидоров, 2024</p>
+                    <div class="row justify-content-center">
+                        <a class="btn btn-outline-light my_contacts" target="_blank" href="mailto:san1207@rambler.ru">
+                            <i class="icon-mail"></i>
+                        </a>
+                        <a class="btn btn-outline-light my_contacts" target="_blank" href="https://t.me/BlockJF">
+                            <i class="icon-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+{% endblock %}

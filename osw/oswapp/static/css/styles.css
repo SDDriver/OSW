@@ -1,0 +1,407 @@
+.error-mes {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.res-color-true {
+    background-color: #0FFF50; /* neongreen */
+}
+
+.res-color-false {
+    background-color: lightcoral;
+}
+
+.margin {
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20 px;
+}
+
+.bg_label_true {
+    background-color: #0FFF50; /* neongreen */
+    margin-bottom: 5px;
+}
+
+.bg_label_false {
+    background-color: lightcoral;
+    margin-bottom: 5px;
+}
+
+.next-btn {
+    margin-top: 20px;
+}
+
+.link_btn {
+    color: white;
+}
+
+/* Главная страница сайта */
+/* Объявляем переменные двух основных цветов сайта для дальнейшего использования */
+:root {
+    --color1: #05b1b1;
+    --color2: #52339a;
+}
+
+/* Элементам с заголовком и двумя кнопками определяем цвета и отступы */
+
+header, footer, .section-main {
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    padding: 100px 100px 80px 100px;
+}
+
+/* Всем секциям определяем стандартные отступы */
+
+section {
+    padding: 50px 0 30px 0;
+}
+
+/* Определяем стили для кнопок в начале главной страницы*/
+
+.btn-main {
+    display: block;
+    max-width: 200px;
+    margin: 0 auto;
+    padding: 10px 5px;
+    background-color: var(--color2);
+    color: var(--bs-white);
+}
+
+.btn-main:hover {
+    background-color: var(--color1);
+    color: var(--bs-black);
+}
+
+/* Кнопки тем на главной странице */
+
+.btn-theme {
+    display: flex;
+    height: 120px;
+    width: 350px;
+    margin: 5px auto;
+    padding: 10px 0 10px 0;
+    background-color: var(--color1);
+    color: var(--bs-black);
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-theme:hover {
+    background-color: var(--color2);
+    color: var(--bs-white);
+}
+
+/* Стили для кружков над кнопками */
+
+.my_circle {
+    margin: 0 auto 15px;
+    height: 70px;
+    width: 70px;
+    border: 3px solid var(--color2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-icons {
+    font-size: 25px;
+    color: var(--color2);
+}
+
+.my_circle2 {
+    margin: 0 auto 15px;
+    height: 70px;
+    width: 70px;
+    border: 3px solid var(--color1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-icons {
+    font-size: 25px;
+    color: var(--color1);
+    margin: 0 5px 0 0;
+}
+
+.my_contacts {
+    display: flex;
+
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Цвета */
+
+.color1 {
+    color: var(--color1);
+}
+
+#section_0, #section_2 {
+    background-color: #eee;
+}
+
+.color_black {
+    border: 1px solid var(--color2);
+    background-color: var(--bs-black);
+}
+
+/* Текст */
+
+#section_0 h5 {
+    padding: 25px;
+    border: 3px solid var(--color1);
+}
+/* Стили теории */
+/* Класс для карусели */
+
+.my_carousel {
+    margin: 10px 100px 100px 130px;
+    border: 1px solid var(--color2);
+}
+
+/* Кнопки билетов в test-main */
+
+.btn-theme2 {
+    display: flex;
+    height: 110px;
+    width: 300px;
+    margin: 5px auto;
+    padding: 10px 0 10px 0;
+    background-color: var(--color1);
+    color: var(--bs-black);
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-theme2:hover {
+    background-color: var(--color2);
+    color: var(--bs-white);
+}
+/* Страница теста */
+/* header и footer билетов и экзамена */
+
+.hf_inside {
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    padding: 21px 0px 21px 0px;
+}
+
+.hf_inside_2 {
+    background: linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);
+    padding: 38px 0px 38px 0px;
+}
+
+/* Для закрашивания div пройденных вопросов, центровки текста и отступов между вопросами */
+
+.btn_paint {
+    background-color: var(--bs-white);
+    border: solid 1px #aaa;
+    border-radius: 10%;
+    margin: 0 2px 0 2px;
+    justify-content: center;
+
+}
+
+.btn_paint:hover {
+    cursor: pointer;
+    background-color: #E5E4E2; /* platinum */
+}
+
+.btn_paint_secondary {
+    background-color: #A7C7E7; /* pastel blue */
+    border: solid 1px #aaa;
+    border-radius: 10%;
+    margin: 0 2px 0 2px;
+}
+
+.btn_paint_secondary:hover {
+    cursor: pointer;
+    background-color: #9FE2BF; /* seafoam green */
+}
+
+.centring {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Secondary класс для кнопок после того как мы через btn-paint() меняли их цвет */
+
+.btn_paint_neongreen {
+    background-color: #0FFF50;
+    border: solid 1px #aaa;
+    border-radius: 10%;
+    margin: 0 2px 0 2px;
+}
+
+.btn_paint_neongreen:hover {
+    cursor: pointer;
+    background-color: #9FE2BF;
+}
+
+.btn_paint_lightcoral {
+    background-color: lightcoral;
+    border: solid 1px #aaa;
+    border-radius: 10%;
+    margin: 0 2px 0 2px;
+}
+
+.btn_paint_lightcoral:hover {
+    cursor: pointer;
+    background-color: #FFC0CB;
+}
+
+/* Для приведения цвета кнопок Завершить След Вопрос и Помощь к общему стилю */
+
+.btn_paint_3 {
+    display: flex;
+    max-width: 200px;
+    padding: 10px 5px;
+    background-color: var(--color2);
+    color: var(--bs-white);
+}
+
+.btn_paint_3:hover {
+    background-color: var(--color1);
+    color: var(--bs-black);
+}
+
+/* Фон таймера */
+
+.timer_paint {
+    display: flex;
+    max-width: 120px;
+    border-radius: 10%;
+    padding: 10px 5px;
+    background-color: var(--color2);
+    color: var(--bs-white);
+    justify-content: center;
+}
+
+/* Для стабилизации высоты контейнера, в котором находятся варианты ответов */
+
+.stab_container {
+    height: 300px;
+}
+
+/* Для стабилизации высоты контейнера, в котором находятся вопросы */
+
+.stab_container_2 {
+    height: 90px;
+}
+
+/* Настройка чекбоксов и лейблов */
+/* Уносим оригинальный чекбокс из поля видимости */
+
+.chb_input {
+    position: absolute;
+    left: -999999px;
+}
+
+/* Рисуем псевдочекбокс */
+
+.chb_new {
+    display: block;
+    position: relative;
+    width: 16px;
+    max-width: 16px;
+    min-width: 16px;
+    height: 16px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    margin-right: 12px;
+
+  }
+
+/* Рисуем в псевдочекбоксе галочку, если оригинальный чекбокс находится в сотоянии checked */
+
+input[type="checkbox"]:checked ~ .chb_new::before{
+    content: '✔';
+    display: block;
+    font-size: 14px;
+    line-height: 0.8;
+    color: #989898;
+    transition: all .2s;
+  }
+
+/* Параметры лейбла с текстом вопроса */
+
+.lbl_pos {
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.lbl_pos:hover {
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+/* Подсветка лейбла при нажатии юзером на вариант ответа */
+
+input[type="checkbox"]:checked ~ .lbl_pos{
+    background-color: lightblue;
+}
+
+/* Общий div для вопроса с чекбоксом */
+
+.my_checkbox {
+   display: flex;
+   align-items: center;
+   margin-top: 5px;
+}
+
+/* Для размещения справа кнопки Следующий вопрос и Завершить */
+
+.btns_location {
+    display: flex;
+    justify-content: right;
+
+}
+
+/* Для отступа кнопки завершить справа для визуального равенства с кнопкой следующий вопрос */
+
+.mr_span {
+    margin-right: 20px;
+}
+
+/* Для отступа таймера */
+
+.ml_span {
+    margin-left: 13px;
+}
+
+/* Отступ 21 кнопки слева */
+
+.my_ml {
+    margin-left: 92px;
+}
+
+/* Страница результатов теста. Частично на этой странице применяются стили из страницы теста */
+
+.lt_repaint {
+    color: var(--bs-white);
+    text-decoration: none;
+}
+
+.pseudo_chb {
+    display: block;
+    position: relative;
+    width: 7px;
+    max-width: 7px;
+    min-width: 7px;
+    height: 7px;
+    background-color: #aaa;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+
+/*  */
+
+.new_font_size {
+    font-size: 1rem;
+}

@@ -1,0 +1,2229 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<body onload="btnPaintResult(), mobile_check(), back_intercept('myModalResultExit', 'result_window')">
+
+<header class="hf_inside"></header>
+
+<!--Общий заголовок (билет или экзамен)-->
+
+<div class="container text-center text-uppercase mt-3">
+    <h5>{{ticket_or_exam}}. Результаты</h5>
+</div>
+
+<div class="container">
+    <div class="row my_checkbox">
+        <!--Количество правильных ответов-->
+<!--        <div class="col-1">-->
+            {% if exam_passed %}
+            <span class="ml_span">Экзамен сдан!</span>
+            <span class="ml_span">Правильных ответов {{correct_amount}} из {{questions_in_ticket}}</span>
+            {% elif exam_failed %}
+            <span class="ml_span">Экзамен не сдан. </span>
+            <span class="ml_span">Правильных ответов {{correct_amount}} из {{questions_in_ticket}}</span>
+            {% else %}
+            <span class="ml_span">Правильных ответов {{correct_amount}} из {{questions_in_ticket}}</span>
+            {% endif %}
+<!--        </div>-->
+    </div>
+    <!--Завершение ознакомления с результатами (для экзамена и билета)-->
+    <div class="row my_checkbox">
+        <div class="col-6"></div>
+        {% if to_main_page %}
+        <div id="to_main_page" class="col-6 btns_location">
+            <div class="btn btn_paint_3 mr_span"><a class="lt_repaint" onclick="exit_from_result('to_main_page')">Завершить</a></div>
+        </div>
+        {% else %}
+        <div id="to_ticket_page" class="col-6 btns_location">
+            <div class="btn btn_paint_3 mr_span"><a class="lt_repaint" onclick="exit_from_result('to_ticket_page')">Завершить</a></div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!--Первый вопрос-->
+
+    <div id="1" class="container">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 1</h5>
+            <h5>{{q_1}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_1">
+                {% if v1_1_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_1}}</label>
+                {% elif v1_1_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_1}}</label>
+                {% elif v1_1_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_1}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_1}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_1">
+                {% if v2_1_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_1}}</label>
+                {% elif v2_1_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_1}}</label>
+                {% elif v2_1_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_1}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_1}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_1">
+                {% if v3_1_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_1}}</label>
+                {% elif v3_1_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_1}}</label>
+                {% elif v3_1_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_1}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_1}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_1">
+                {% if hidden_4_1 %}
+                {% else %}
+                    {% if v4_1_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_1}}</label>
+                    {% elif v4_1_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_1}}</label>
+                    {% elif v4_1_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_1}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_1}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_1">
+                {% if hidden_5_1 %}
+                {% else %}
+                    {% if v5_1_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_1}}</label>
+                    {% elif v5_1_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_1}}</label>
+                    {% elif v5_1_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_1}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_1}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_1">
+                {% if hidden_6_1 %}
+                {% else %}
+                    {% if v6_1_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_1}}</label>
+                    {% elif v6_1_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_1}}</label>
+                    {% elif v6_1_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_1}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_1}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+         <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(1)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Второй вопрос-->
+
+    <div id="2" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 2</h5>
+            <h5>{{q_2}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_2">
+                {% if v1_2_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_2}}</label>
+                {% elif v1_2_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_2}}</label>
+                {% elif v1_2_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_2}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_2}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_2">
+                {% if v2_2_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_2}}</label>
+                {% elif v2_2_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_2}}</label>
+                {% elif v2_2_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_2}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_2}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_2">
+                {% if v3_2_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_2}}</label>
+                {% elif v3_2_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_2}}</label>
+                {% elif v3_2_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_2}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_2}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_2">
+                {% if hidden_4_2 %}
+                {% else %}
+                    {% if v4_2_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_2}}</label>
+                    {% elif v4_2_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_2}}</label>
+                    {% elif v4_2_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_2}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_2}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_2">
+                {% if hidden_5_2 %}
+                {% else %}
+                    {% if v5_2_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_2}}</label>
+                    {% elif v5_2_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_2}}</label>
+                    {% elif v5_2_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_2}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_2}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_2">
+                {% if hidden_6_2 %}
+                {% else %}
+                    {% if v6_2_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_2}}</label>
+                    {% elif v6_2_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_2}}</label>
+                    {% elif v6_2_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_2}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_2}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(2)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Третий вопрос-->
+
+    <div id="3" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 3</h5>
+            <h5>{{q_3}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_3">
+                {% if v1_3_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_3}}</label>
+                {% elif v1_3_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_3}}</label>
+                {% elif v1_3_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_3}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_3}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_3">
+                {% if v2_3_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_3}}</label>
+                {% elif v2_3_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_3}}</label>
+                {% elif v2_3_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_3}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_3}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_3">
+                {% if v3_3_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_3}}</label>
+                {% elif v3_3_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_3}}</label>
+                {% elif v3_3_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_3}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_3}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_3">
+                {% if hidden_4_3 %}
+                {% else %}
+                    {% if v4_3_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_3}}</label>
+                    {% elif v4_3_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_3}}</label>
+                    {% elif v4_3_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_3}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_3}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_3">
+                {% if hidden_5_3 %}
+                {% else %}
+                    {% if v5_3_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_3}}</label>
+                    {% elif v5_3_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_3}}</label>
+                    {% elif v5_3_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_3}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_3}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_3">
+                {% if hidden_6_3 %}
+                {% else %}
+                    {% if v6_3_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_3}}</label>
+                    {% elif v6_3_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_3}}</label>
+                    {% elif v6_3_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_3}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_3}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(3)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Четвертый вопрос-->
+
+    <div id="4" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 4</h5>
+            <h5>{{q_4}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_4">
+                {% if v1_4_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_4}}</label>
+                {% elif v1_4_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_4}}</label>
+                {% elif v1_4_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_4}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_4}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_4">
+                {% if v2_4_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_4}}</label>
+                {% elif v2_4_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_4}}</label>
+                {% elif v2_4_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_4}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_4}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_4">
+                {% if v3_4_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_4}}</label>
+                {% elif v3_4_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_4}}</label>
+                {% elif v3_4_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_4}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_4}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_4">
+                {% if hidden_4_4 %}
+                {% else %}
+                    {% if v4_4_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_4}}</label>
+                    {% elif v4_4_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_4}}</label>
+                    {% elif v4_4_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_4}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_4}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_4">
+                {% if hidden_5_4 %}
+                {% else %}
+                    {% if v5_4_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_4}}</label>
+                    {% elif v5_4_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_4}}</label>
+                    {% elif v5_4_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_4}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_4}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_4">
+                {% if hidden_6_4 %}
+                {% else %}
+                    {% if v6_4_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_4}}</label>
+                    {% elif v6_4_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_4}}</label>
+                    {% elif v6_4_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_4}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_4}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(4)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Пятый вопрос-->
+
+    <div id="5" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 5</h5>
+            <h5>{{q_5}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_5">
+                {% if v1_5_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_5}}</label>
+                {% elif v1_5_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_5}}</label>
+                {% elif v1_5_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_5}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_5}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_5">
+                {% if v2_5_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_5}}</label>
+                {% elif v2_5_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_5}}</label>
+                {% elif v2_5_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_5}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_5}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_5">
+                {% if v3_5_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_5}}</label>
+                {% elif v3_5_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_5}}</label>
+                {% elif v3_5_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_5}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_5}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_5">
+                {% if hidden_4_5 %}
+                {% else %}
+                    {% if v4_5_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_5}}</label>
+                    {% elif v4_5_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_5}}</label>
+                    {% elif v4_5_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_5}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_5}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_5">
+                {% if hidden_5_5 %}
+                {% else %}
+                    {% if v5_5_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_5}}</label>
+                    {% elif v5_5_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_5}}</label>
+                    {% elif v5_5_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_5}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_5}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_5">
+                {% if hidden_6_5 %}
+                {% else %}
+                    {% if v6_5_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_5}}</label>
+                    {% elif v6_5_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_5}}</label>
+                    {% elif v6_5_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_5}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_5}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(5)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Шестой вопрос-->
+
+    <div id="6" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 6</h5>
+            <h5>{{q_6}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_6">
+                {% if v1_6_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_6}}</label>
+                {% elif v1_6_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_6}}</label>
+                {% elif v1_6_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_6}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_6}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_6">
+                {% if v2_6_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_6}}</label>
+                {% elif v2_6_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_6}}</label>
+                {% elif v2_6_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_6}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_6}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_6">
+                {% if v3_6_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_6}}</label>
+                {% elif v3_6_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_6}}</label>
+                {% elif v3_6_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_6}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_6}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_6">
+                {% if hidden_4_6 %}
+                {% else %}
+                    {% if v4_6_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_6}}</label>
+                    {% elif v4_6_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_6}}</label>
+                    {% elif v4_6_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_6}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_6}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_6">
+                {% if hidden_5_6 %}
+                {% else %}
+                    {% if v5_6_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_6}}</label>
+                    {% elif v5_6_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_6}}</label>
+                    {% elif v5_6_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_6}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_6}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_6">
+                {% if hidden_6_6 %}
+                {% else %}
+                    {% if v6_6_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_6}}</label>
+                    {% elif v6_6_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_6}}</label>
+                    {% elif v6_6_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_6}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_6}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(6)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Седьмой вопрос-->
+
+    <div id="7" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 7</h5>
+            <h5>{{q_7}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_7">
+                {% if v1_7_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_7}}</label>
+                {% elif v1_7_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_7}}</label>
+                {% elif v1_7_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_7}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_7}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_7">
+                {% if v2_7_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_7}}</label>
+                {% elif v2_7_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_7}}</label>
+                {% elif v2_7_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_7}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_7}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_7">
+                {% if v3_7_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_7}}</label>
+                {% elif v3_7_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_7}}</label>
+                {% elif v3_7_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_7}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_7}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_7">
+                {% if hidden_4_7 %}
+                {% else %}
+                    {% if v4_7_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_7}}</label>
+                    {% elif v4_7_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_7}}</label>
+                    {% elif v4_7_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_7}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_7}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_7">
+                {% if hidden_5_7 %}
+                {% else %}
+                    {% if v5_7_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_7}}</label>
+                    {% elif v5_7_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_7}}</label>
+                    {% elif v5_7_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_7}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_7}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_7">
+                {% if hidden_6_7 %}
+                {% else %}
+                    {% if v6_7_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_7}}</label>
+                    {% elif v6_7_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_7}}</label>
+                    {% elif v6_7_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_7}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_7}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(7)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Восьмой вопрос-->
+
+    <div id="8" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 8</h5>
+            <h5>{{q_8}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_8">
+                {% if v1_8_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_8}}</label>
+                {% elif v1_8_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_8}}</label>
+                {% elif v1_8_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_8}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_8}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_8">
+                {% if v2_8_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_8}}</label>
+                {% elif v2_8_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_8}}</label>
+                {% elif v2_8_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_8}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_8}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_8">
+                {% if v3_8_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_8}}</label>
+                {% elif v3_8_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_8}}</label>
+                {% elif v3_8_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_8}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_8}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_8">
+                {% if hidden_4_8 %}
+                {% else %}
+                    {% if v4_8_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_8}}</label>
+                    {% elif v4_8_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_8}}</label>
+                    {% elif v4_8_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_8}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_8}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_8">
+                {% if hidden_5_8 %}
+                {% else %}
+                    {% if v5_8_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_8}}</label>
+                    {% elif v5_8_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_8}}</label>
+                    {% elif v5_8_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_8}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_8}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_8">
+                {% if hidden_6_8 %}
+                {% else %}
+                    {% if v6_8_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_8}}</label>
+                    {% elif v6_8_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_8}}</label>
+                    {% elif v6_8_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_8}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_8}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(8)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Девятый вопрос-->
+
+    <div id="9" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 9</h5>
+            <h5>{{q_9}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_9">
+                {% if v1_9_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_9}}</label>
+                {% elif v1_9_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_9}}</label>
+                {% elif v1_9_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_9}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_9}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_9">
+                {% if v2_9_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_9}}</label>
+                {% elif v2_9_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_9}}</label>
+                {% elif v2_9_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_9}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_9}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_9">
+                {% if v3_9_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_9}}</label>
+                {% elif v3_9_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_9}}</label>
+                {% elif v3_9_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_9}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_9}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_9">
+                {% if hidden_4_9 %}
+                {% else %}
+                    {% if v4_9_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_9}}</label>
+                    {% elif v4_9_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_9}}</label>
+                    {% elif v4_9_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_9}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_9}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_9">
+                {% if hidden_5_9 %}
+                {% else %}
+                    {% if v5_9_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_9}}</label>
+                    {% elif v5_9_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_9}}</label>
+                    {% elif v5_9_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_9}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_9}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_9">
+                {% if hidden_6_9 %}
+                {% else %}
+                    {% if v6_9_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_9}}</label>
+                    {% elif v6_9_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_9}}</label>
+                    {% elif v6_9_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_9}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_9}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(9)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Десятый вопрос-->
+
+    <div id="10" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 10</h5>
+            <h5>{{q_10}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_10">
+                {% if v1_10_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_10}}</label>
+                {% elif v1_10_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_10}}</label>
+                {% elif v1_10_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_10}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_10}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_10">
+                {% if v2_10_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_10}}</label>
+                {% elif v2_10_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_10}}</label>
+                {% elif v2_10_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_10}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_10}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_10">
+                {% if v3_10_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_10}}</label>
+                {% elif v3_10_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_10}}</label>
+                {% elif v3_10_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_10}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_10}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_10">
+                {% if hidden_4_10 %}
+                {% else %}
+                    {% if v4_10_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_10}}</label>
+                    {% elif v4_10_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_10}}</label>
+                    {% elif v4_10_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_10}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_10}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_10">
+                {% if hidden_5_10 %}
+                {% else %}
+                    {% if v5_10_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_10}}</label>
+                    {% elif v5_10_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_10}}</label>
+                    {% elif v5_10_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_10}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_10}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_10">
+                {% if hidden_6_10 %}
+                {% else %}
+                    {% if v6_10_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_10}}</label>
+                    {% elif v6_10_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_10}}</label>
+                    {% elif v6_10_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_10}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_10}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(10)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Одинадцатый вопрос-->
+
+    <div id="11" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 11</h5>
+            <h5>{{q_11}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_11">
+                {% if v1_11_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_11}}</label>
+                {% elif v1_11_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_11}}</label>
+                {% elif v1_11_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_11}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_11}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_11">
+                {% if v2_11_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_11}}</label>
+                {% elif v2_11_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_11}}</label>
+                {% elif v2_11_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_11}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_11}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_11">
+                {% if v3_11_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_11}}</label>
+                {% elif v3_11_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_11}}</label>
+                {% elif v3_11_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_11}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_11}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_11">
+                {% if hidden_4_11 %}
+                {% else %}
+                    {% if v4_11_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_11}}</label>
+                    {% elif v4_11_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_11}}</label>
+                    {% elif v4_11_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_11}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_11}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_11">
+                {% if hidden_5_11 %}
+                {% else %}
+                    {% if v5_11_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_11}}</label>
+                    {% elif v5_11_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_11}}</label>
+                    {% elif v5_11_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_11}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_11}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_11">
+                {% if hidden_6_11 %}
+                {% else %}
+                    {% if v6_11_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_11}}</label>
+                    {% elif v6_11_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_11}}</label>
+                    {% elif v6_11_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_11}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_11}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(11)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Двенадцатый вопрос-->
+
+    <div id="12" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 12</h5>
+            <h5>{{q_12}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_12">
+                {% if v1_12_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_12}}</label>
+                {% elif v1_12_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_12}}</label>
+                {% elif v1_12_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_12}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_12}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_12">
+                {% if v2_12_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_12}}</label>
+                {% elif v2_12_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_12}}</label>
+                {% elif v2_12_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_12}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_12}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_12">
+                {% if v3_12_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_12}}</label>
+                {% elif v3_12_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_12}}</label>
+                {% elif v3_12_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_12}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_12}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_12">
+                {% if hidden_4_12 %}
+                {% else %}
+                    {% if v4_12_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_12}}</label>
+                    {% elif v4_12_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_12}}</label>
+                    {% elif v4_12_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_12}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_12}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_12">
+                {% if hidden_5_12 %}
+                {% else %}
+                    {% if v5_12_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_12}}</label>
+                    {% elif v5_12_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_12}}</label>
+                    {% elif v5_12_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_12}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_12}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_12">
+                {% if hidden_6_12 %}
+                {% else %}
+                    {% if v6_12_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_12}}</label>
+                    {% elif v6_12_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_12}}</label>
+                    {% elif v6_12_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_12}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_12}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(12)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Тринадцатый вопрос-->
+
+    <div id="13" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 13</h5>
+            <h5>{{q_13}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_13">
+                {% if v1_13_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_13}}</label>
+                {% elif v1_13_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_13}}</label>
+                {% elif v1_13_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_13}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_13}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_13">
+                {% if v2_13_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_13}}</label>
+                {% elif v2_13_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_13}}</label>
+                {% elif v2_13_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_13}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_13}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_13">
+                {% if v3_13_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_13}}</label>
+                {% elif v3_13_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_13}}</label>
+                {% elif v3_13_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_13}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_13}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_13">
+                {% if hidden_4_13 %}
+                {% else %}
+                    {% if v4_13_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_13}}</label>
+                    {% elif v4_13_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_13}}</label>
+                    {% elif v4_13_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_13}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_13}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_13">
+                {% if hidden_5_13 %}
+                {% else %}
+                    {% if v5_13_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_13}}</label>
+                    {% elif v5_13_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_13}}</label>
+                    {% elif v5_13_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_13}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_13}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_13">
+                {% if hidden_6_13 %}
+                {% else %}
+                    {% if v6_13_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_13}}</label>
+                    {% elif v6_13_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_13}}</label>
+                    {% elif v6_13_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_13}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_13}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(13)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Четырнадцатый вопрос-->
+
+    <div id="14" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 14</h5>
+            <h5>{{q_14}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_14">
+                {% if v1_14_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_14}}</label>
+                {% elif v1_14_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_14}}</label>
+                {% elif v1_14_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_14}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_14}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_14">
+                {% if v2_14_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_14}}</label>
+                {% elif v2_14_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_14}}</label>
+                {% elif v2_14_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_14}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_14}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_14">
+                {% if v3_14_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_14}}</label>
+                {% elif v3_14_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_14}}</label>
+                {% elif v3_14_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_14}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_14}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_14">
+                {% if hidden_4_14 %}
+                {% else %}
+                    {% if v4_14_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_14}}</label>
+                    {% elif v4_14_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_14}}</label>
+                    {% elif v4_14_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_14}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_14}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_14">
+                {% if hidden_5_14 %}
+                {% else %}
+                    {% if v5_14_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_14}}</label>
+                    {% elif v5_14_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_14}}</label>
+                    {% elif v5_14_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_14}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_14}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_14">
+                {% if hidden_6_14 %}
+                {% else %}
+                    {% if v6_14_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_14}}</label>
+                    {% elif v6_14_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_14}}</label>
+                    {% elif v6_14_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_14}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_14}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(14)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Пятнадцатый вопрос-->
+
+    <div id="15" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 15</h5>
+            <h5>{{q_15}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_15">
+                {% if v1_15_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_15}}</label>
+                {% elif v1_15_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_15}}</label>
+                {% elif v1_15_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_15}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_15}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_15">
+                {% if v2_15_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_15}}</label>
+                {% elif v2_15_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_15}}</label>
+                {% elif v2_15_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_15}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_15}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_15">
+                {% if v3_15_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_15}}</label>
+                {% elif v3_15_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_15}}</label>
+                {% elif v3_15_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_15}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_15}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_15">
+                {% if hidden_4_15 %}
+                {% else %}
+                    {% if v4_15_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_15}}</label>
+                    {% elif v4_15_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_15}}</label>
+                    {% elif v4_15_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_15}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_15}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_15">
+                {% if hidden_5_15 %}
+                {% else %}
+                    {% if v5_15_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_15}}</label>
+                    {% elif v5_15_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_15}}</label>
+                    {% elif v5_15_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_15}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_15}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_15">
+                {% if hidden_6_15 %}
+                {% else %}
+                    {% if v6_15_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_15}}</label>
+                    {% elif v6_15_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_15}}</label>
+                    {% elif v6_15_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_15}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_15}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(15)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Шестнадцатый вопрос-->
+
+    <div id="16" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 16</h5>
+            <h5>{{q_16}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_16">
+                {% if v1_16_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_16}}</label>
+                {% elif v1_16_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_16}}</label>
+                {% elif v1_16_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_16}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_16}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_16">
+                {% if v2_16_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_16}}</label>
+                {% elif v2_16_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_16}}</label>
+                {% elif v2_16_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_16}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_16}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_16">
+                {% if v3_16_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_16}}</label>
+                {% elif v3_16_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_16}}</label>
+                {% elif v3_16_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_16}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_16}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_16">
+                {% if hidden_4_16 %}
+                {% else %}
+                    {% if v4_16_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_16}}</label>
+                    {% elif v4_16_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_16}}</label>
+                    {% elif v4_16_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_16}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_16}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_16">
+                {% if hidden_5_16 %}
+                {% else %}
+                    {% if v5_16_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_16}}</label>
+                    {% elif v5_16_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_16}}</label>
+                    {% elif v5_16_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_16}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_16}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_16">
+                {% if hidden_6_16 %}
+                {% else %}
+                    {% if v6_16_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_16}}</label>
+                    {% elif v6_16_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_16}}</label>
+                    {% elif v6_16_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_16}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_16}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(16)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Семнадцатый вопрос-->
+
+    <div id="17" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 17</h5>
+            <h5>{{q_17}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_17">
+                {% if v1_17_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_17}}</label>
+                {% elif v1_17_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_17}}</label>
+                {% elif v1_17_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_17}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_17}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_17">
+                {% if v2_17_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_17}}</label>
+                {% elif v2_17_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_17}}</label>
+                {% elif v2_17_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_17}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_17}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_17">
+                {% if v3_17_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_17}}</label>
+                {% elif v3_17_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_17}}</label>
+                {% elif v3_17_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_17}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_17}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_17">
+                {% if hidden_4_17 %}
+                {% else %}
+                    {% if v4_17_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_17}}</label>
+                    {% elif v4_17_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_17}}</label>
+                    {% elif v4_17_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_17}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_17}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_17">
+                {% if hidden_5_17 %}
+                {% else %}
+                    {% if v5_17_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_17}}</label>
+                    {% elif v5_17_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_17}}</label>
+                    {% elif v5_17_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_17}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_17}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_17">
+                {% if hidden_6_17 %}
+                {% else %}
+                    {% if v6_17_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_17}}</label>
+                    {% elif v6_17_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_17}}</label>
+                    {% elif v6_17_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_17}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_17}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(17)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Восемнадцатый вопрос-->
+
+    <div id="18" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 18</h5>
+            <h5>{{q_18}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_18">
+                {% if v1_18_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_18}}</label>
+                {% elif v1_18_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_18}}</label>
+                {% elif v1_18_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_18}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_18}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_18">
+                {% if v2_18_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_18}}</label>
+                {% elif v2_18_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_18}}</label>
+                {% elif v2_18_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_18}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_18}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_18">
+                {% if v3_18_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_18}}</label>
+                {% elif v3_18_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_18}}</label>
+                {% elif v3_18_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_18}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_18}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_18">
+                {% if hidden_4_18 %}
+                {% else %}
+                    {% if v4_18_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_18}}</label>
+                    {% elif v4_18_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_18}}</label>
+                    {% elif v4_18_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_18}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_18}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_18">
+                {% if hidden_5_18 %}
+                {% else %}
+                    {% if v5_18_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_18}}</label>
+                    {% elif v5_18_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_18}}</label>
+                    {% elif v5_18_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_18}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_18}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_18">
+                {% if hidden_6_18 %}
+                {% else %}
+                    {% if v6_18_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_18}}</label>
+                    {% elif v6_18_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_18}}</label>
+                    {% elif v6_18_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_18}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_18}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(18)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Девятнадцатый вопрос-->
+
+    <div id="19" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 19</h5>
+            <h5>{{q_19}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_19">
+                {% if v1_19_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_19}}</label>
+                {% elif v1_19_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_19}}</label>
+                {% elif v1_19_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_19}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_19}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_19">
+                {% if v2_19_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_19}}</label>
+                {% elif v2_19_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_19}}</label>
+                {% elif v2_19_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_19}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_19}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_19">
+                {% if v3_19_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_19}}</label>
+                {% elif v3_19_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_19}}</label>
+                {% elif v3_19_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_19}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_19}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_19">
+                {% if hidden_4_19 %}
+                {% else %}
+                    {% if v4_19_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_19}}</label>
+                    {% elif v4_19_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_19}}</label>
+                    {% elif v4_19_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_19}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_19}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_19">
+                {% if hidden_5_19 %}
+                {% else %}
+                    {% if v5_19_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_19}}</label>
+                    {% elif v5_19_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_19}}</label>
+                    {% elif v5_19_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_19}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_19}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_19">
+                {% if hidden_6_19 %}
+                {% else %}
+                    {% if v6_19_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_19}}</label>
+                    {% elif v6_19_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_19}}</label>
+                    {% elif v6_19_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_19}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_19}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(19)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Двадцатый вопрос-->
+
+    <div id="20" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 20</h5>
+            <h5>{{q_20}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_20">
+                {% if v1_20_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_20}}</label>
+                {% elif v1_20_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_20}}</label>
+                {% elif v1_20_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_20}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_20}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_20">
+                {% if v2_20_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_20}}</label>
+                {% elif v2_20_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_20}}</label>
+                {% elif v2_20_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_20}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_20}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_20">
+                {% if v3_20_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_20}}</label>
+                {% elif v3_20_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_20}}</label>
+                {% elif v3_20_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_20}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_20}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_20">
+                {% if hidden_4_20 %}
+                {% else %}
+                    {% if v4_20_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_20}}</label>
+                    {% elif v4_20_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_20}}</label>
+                    {% elif v4_20_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_20}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_20}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_20">
+                {% if hidden_5_20 %}
+                {% else %}
+                    {% if v5_20_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_20}}</label>
+                    {% elif v5_20_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_20}}</label>
+                    {% elif v5_20_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_20}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_20}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_20">
+                {% if hidden_6_20 %}
+                {% else %}
+                    {% if v6_20_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_20}}</label>
+                    {% elif v6_20_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_20}}</label>
+                    {% elif v6_20_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_20}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_20}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if ninth_ticket %}
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(20)">Следующий вопрос</button>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row mt-3 mb-5">
+            <div class="col-6 mt-3">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(20)" hidden="">Следующий вопрос</button>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+{% if ninth_ticket %}
+
+<!--Двадцать первый вопрос-->
+
+    <div id="21" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 21</h5>
+            <h5>{{q_21}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_21">
+                {% if v1_21_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_21}}</label>
+                {% elif v1_21_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_21}}</label>
+                {% elif v1_21_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_21}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_21}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_21">
+                {% if v2_21_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_21}}</label>
+                {% elif v2_21_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_21}}</label>
+                {% elif v2_21_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_21}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_21}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_21">
+                {% if v3_21_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_21}}</label>
+                {% elif v3_21_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_21}}</label>
+                {% elif v3_21_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_21}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_21}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_21">
+                {% if hidden_4_21 %}
+                {% else %}
+                    {% if v4_21_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_21}}</label>
+                    {% elif v4_21_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_21}}</label>
+                    {% elif v4_21_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_21}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_21}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_21">
+                {% if hidden_5_21 %}
+                {% else %}
+                    {% if v5_21_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_21}}</label>
+                    {% elif v5_21_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_21}}</label>
+                    {% elif v5_21_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_21}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_21}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_21">
+                {% if hidden_6_21 %}
+                {% else %}
+                    {% if v6_21_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_21}}</label>
+                    {% elif v6_21_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_21}}</label>
+                    {% elif v6_21_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_21}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_21}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(21)">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+<!--Двадцать второй вопрос-->
+
+    <div id="22" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 22</h5>
+            <h5>{{q_22}}</h5>
+        </div>
+
+        <div class="container stab_container">
+            <div class="my_checkbox" id="answer1_22">
+                {% if v1_22_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v1_22}}</label>
+                {% elif v1_22_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v1_22}}</label>
+                {% elif v1_22_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v1_22}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v1_22}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer2_22">
+                {% if v2_22_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v2_22}}</label>
+                {% elif v2_22_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v2_22}}</label>
+                {% elif v2_22_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v2_22}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v2_22}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer3_22">
+                {% if v3_22_true_failed %}
+                <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v3_22}}</label>
+                {% elif v3_22_true %}
+                <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v3_22}}</label>
+                {% elif v3_22_false %}
+                 <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v3_22}}</label>
+                {% else %}
+                 <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v3_22}}</label>
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer4_22">
+                {% if hidden_4_22 %}
+                {% else %}
+                    {% if v4_22_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v4_22}}</label>
+                    {% elif v4_22_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v4_22}}</label>
+                    {% elif v4_22_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v4_22}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v4_22}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer5_22">
+                {% if hidden_5_22 %}
+                {% else %}
+                    {% if v5_22_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v5_22}}</label>
+                    {% elif v5_22_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v5_22}}</label>
+                    {% elif v5_22_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v5_22}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v5_22}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div class="my_checkbox" id="answer6_22">
+                {% if hidden_6_22 %}
+                {% else %}
+                    {% if v6_22_true_failed %}
+                    <input type="checkbox" class="chb_input"><div class="chb_new"></div><label class="bg_label_true">{{v6_22}}</label>
+                    {% elif v6_22_true %}
+                    <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_true">{{v6_22}}</label>
+                    {% elif v6_22_false %}
+                     <input type="checkbox" class="chb_input" checked><div class="chb_new"></div><label class="bg_label_false">{{v6_22}}</label>
+                    {% else %}
+                     <input type="checkbox" class="chb_input" ><div class="chb_new"></div><label>{{v6_22}}</label>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-5">
+            <div class="col-6 mt-3">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(22)" hidden="">Следующий вопрос</button>
+                </div>
+            </div>
+         </div>
+
+    </div>
+
+{% endif %}
+
+<!--Ссылки на вопросы-->
+
+<div class="container mt-3">
+    <div class="ml-5">
+        <div class="row centring">
+            <div id="btn1" onclick="questionSwitch2(1)" class="col-1 mt-3 text-center btn_paint"><span>1</span></div>
+            <div id="btn2" onclick="questionSwitch2(2)" class="col-1 mt-3 text-center btn_paint"><span>2</span></div>
+            <div id="btn3" onclick="questionSwitch2(3)" class="col-1 mt-3 text-center btn_paint"><span>3</span></div>
+            <div id="btn4" onclick="questionSwitch2(4)" class="col-1 mt-3 text-center btn_paint"><span>4</span></div>
+            <div id="btn5" onclick="questionSwitch2(5)" class="col-1 mt-3 text-center btn_paint"><span>5</span></div>
+            <div id="btn6" onclick="questionSwitch2(6)" class="col-1 mt-3 text-center btn_paint"><span>6</span></div>
+            <div id="btn7" onclick="questionSwitch2(7)" class="col-1 mt-3 text-center btn_paint"><span>7</span></div>
+            <div id="btn8" onclick="questionSwitch2(8)" class="col-1 mt-3 text-center btn_paint"><span>8</span></div>
+            <div id="btn9" onclick="questionSwitch2(9)" class="col-1 mt-3 text-center btn_paint"><span>9</span></div>
+            <div id="btn10" onclick="questionSwitch2(10)" class="col-1 mt-3 text-center btn_paint"><span>10</span></div>
+        </div>
+    </div>
+    <div class="row centring">
+        <div id="btn11" onclick="questionSwitch2(11)" class="col-1 mt-3 text-center btn_paint"><span>11</span></div>
+        <div id="btn12" onclick="questionSwitch2(12)" class="col-1 mt-3 text-center btn_paint"><span>12</span></div>
+        <div id="btn13" onclick="questionSwitch2(13)" class="col-1 mt-3 text-center btn_paint"><span>13</span></div>
+        <div id="btn14" onclick="questionSwitch2(14)" class="col-1 mt-3 text-center btn_paint"><span>14</span></div>
+        <div id="btn15" onclick="questionSwitch2(15)" class="col-1 mt-3 text-center btn_paint"><span>15</span></div>
+        <div id="btn16" onclick="questionSwitch2(16)" class="col-1 mt-3 text-center btn_paint"><span>16</span></div>
+        <div id="btn17" onclick="questionSwitch2(17)" class="col-1 mt-3 text-center btn_paint"><span>17</span></div>
+        <div id="btn18" onclick="questionSwitch2(18)" class="col-1 mt-3 text-center btn_paint"><span>18</span></div>
+        <div id="btn19" onclick="questionSwitch2(19)" class="col-1 mt-3 text-center btn_paint"><span>19</span></div>
+        <div id="btn20" onclick="questionSwitch2(20)" class="col-1 mt-3 text-center btn_paint"><span>20</span></div>
+    </div>
+    {% if ninth_ticket %}
+    <div class="row">
+        <div id="btn21" onclick="questionSwitch2(21)" class="col-1 mt-3 text-center btn_paint my_ml"><span>21</span></div>
+        <div id="btn22" onclick="questionSwitch2(22)" class="col-1 mt-3 text-center btn_paint"><span>22</span></div>
+    </div>
+    {% endif %}
+</div>
+
+<footer class="hf_inside mt-3"></footer>
+
+</body>
+
+<!--Модальное окно завершения просмотра результата-->
+<div class="modal fade" id="myModalResultExit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalResultExitLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModalResultExitLabel">Внимание</h1>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <span>Завершить просмотр результатов?</span>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button id="button_res_exit" type="button" class="btn btn-secondary" onclick="location.href = '/'">Да</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Нет</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+{% endblock %}

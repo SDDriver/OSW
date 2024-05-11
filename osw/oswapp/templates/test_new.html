@@ -1,0 +1,2220 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<body onload="question_window_ticket(), mobile_check(), back_intercept('myModalTicketExit')">
+<header class="hf_inside"></header>
+
+<div class="container text-center text-uppercase mt-3">
+    <h5>Билет № <span>{{ticketid}}</span></h5>
+</div>
+
+<form method="POST" id="my_form_ticket">
+    {% csrf_token %}
+<!--Завершение теста-->
+    <div class="container btns_location mb-3">
+            <input class="btn btn_paint_3 mr_span" type="submit" value="Завершить" onclick="full_pass_checking_ticket()">
+    </div>
+<!--Первый вопрос-->
+
+    <div id="1" class="container">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 1</h5>
+            <h5>{{q_1}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+            <div class="my_checkbox">
+                      <input id="answer1_1"  type="checkbox" value="1" class="chb_input" name="field1_1"><div class="chb_new"></div>
+                      <label for="answer1_1" class="lbl_pos">{{v1_1}}</label>
+            </div>
+            <div class="my_checkbox">
+                      <input id="answer2_1"  type="checkbox" value="2" class="chb_input" name="field2_1"><div class="chb_new"></div>
+                      <label for="answer2_1" class="lbl_pos">{{v2_1}}</label>
+            </div>
+            <div class="my_checkbox">
+                      <input id="answer3_1"  type="checkbox" value="3" class="chb_input" name="field3_1"><div class="chb_new"></div>
+                      <label for="answer3_1" class="lbl_pos">{{v3_1}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_1 %}
+                {% else %}
+                <div class="my_checkbox">
+                      <input id="answer4_1"  type="checkbox" value="4" class="chb_input" name="field4_1"><div class="chb_new"></div>
+                      <label for="answer4_1" class="lbl_pos">{{v4_1}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_1 %}
+                {% else %}
+                 <div class="my_checkbox">
+                      <input id="answer5_1"  type="checkbox" value="5" class="chb_input" name="field5_1"><div class="chb_new"></div>
+                      <label for="answer5_1" class="lbl_pos">{{v5_1}}</label>
+                 </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_6_1 %}
+                {% else %}
+                 <div class="my_checkbox">
+                      <input id="answer6_1"  type="checkbox" value="6" class="chb_input" name="field6_1"><div class="chb_new"></div>
+                      <label for="answer6_1" class="lbl_pos">{{v6_1}}</label>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(1), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_1 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_1-->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_1|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Второй вопрос-->
+
+    <div id="2" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 2</h5>
+            <h5>{{q_2}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+            <div class="my_checkbox">
+                <input id="answer1_2"  type="checkbox" value="1" class="chb_input" name="field1_2"><div class="chb_new"></div>
+                <label for="answer1_2" class="lbl_pos">{{v1_2}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_2"  type="checkbox" value="2" class="chb_input" name="field2_2"><div class="chb_new"></div>
+                <label for="answer2_2" class="lbl_pos">{{v2_2}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_2"  type="checkbox" value="3" class="chb_input" name="field3_2"><div class="chb_new"></div>
+                <label for="answer3_2" class="lbl_pos">{{v3_2}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_2 %}
+                {% else %}
+                <div class="my_checkbox">
+                      <input id="answer4_2"  type="checkbox" value="4" class="chb_input" name="field4_2"><div class="chb_new"></div>
+                      <label for="answer4_2" class="lbl_pos">{{v4_2}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_2 %}
+                {% else %}
+                <div class="my_checkbox">
+                      <input id="answer5_2"  type="checkbox" value="5" class="chb_input" name="field5_2"><div class="chb_new"></div>
+                      <label for="answer5_2" class="lbl_pos">{{v5_2}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_6_2 %}
+                {% else %}
+                <div class="my_checkbox">
+                      <input id="answer6_2"  type="checkbox" value="6" class="chb_input" name="field6_2"><div class="chb_new"></div>
+                      <label for="answer6_2" class="lbl_pos">{{v6_2}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(2), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_1 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_1-->
+                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel2">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_2|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Третий вопрос-->
+
+    <div id="3" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 3</h5>
+            <h5>{{q_3}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_3"  type="checkbox" value="1" class="chb_input" name="field1_3"><div class="chb_new"></div>
+                <label for="answer1_3" class="lbl_pos">{{v1_3}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_3"  type="checkbox" value="2" class="chb_input" name="field2_3"><div class="chb_new"></div>
+                <label for="answer2_3" class="lbl_pos">{{v2_3}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_3"  type="checkbox" value="3" class="chb_input" name="field3_3"><div class="chb_new"></div>
+                <label for="answer3_3" class="lbl_pos">{{v3_3}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_3 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_3"  type="checkbox" value="4" class="chb_input"  name="field4_3"><div class="chb_new"></div>
+                <label for="answer4_3" class="lbl_pos">{{v4_3}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_3 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_3"  type="checkbox" value="5" class="chb_input" name="field5_3"><div class="chb_new"></div>
+                <label for="answer5_3" class="lbl_pos">{{v5_3}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_3 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_3"  type="checkbox" value="6" class="chb_input" name="field6_3"><div class="chb_new"></div>
+                <label for="answer6_3" class="lbl_pos">{{v6_3}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(3), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_1 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_1-->
+                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel3">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_3|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Четвертый вопрос-->
+
+    <div id="4" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 4</h5>
+            <h5>{{q_4}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_4"  type="checkbox" value="1" class="chb_input" name="field1_4"><div class="chb_new"></div>
+                <label for="answer1_4" class="lbl_pos">{{v1_4}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_4"  type="checkbox" value="2" class="chb_input" name="field2_4"><div class="chb_new"></div>
+                <label for="answer2_4" class="lbl_pos">{{v2_4}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_4"  type="checkbox" value="3" class="chb_input" name="field3_4"><div class="chb_new"></div>
+                <label for="answer3_4" class="lbl_pos">{{v3_4}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_4 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_4"  type="checkbox" value="4" class="chb_input"  name="field4_4"><div class="chb_new"></div>
+                <label for="answer4_4" class="lbl_pos">{{v4_4}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_4 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_4"  type="checkbox" value="5" class="chb_input" name="field5_4"><div class="chb_new"></div>
+                <label for="answer5_4" class="lbl_pos">{{v5_4}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_4 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_4"  type="checkbox" value="6" class="chb_input" name="field6_4"><div class="chb_new"></div>
+                <label for="answer6_4" class="lbl_pos">{{v6_4}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(4), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_4 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop4">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_4-->
+                <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel4" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel4">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_4|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Пятый вопрос-->
+
+    <div id="5" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 5</h5>
+            <h5>{{q_5}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_5"  type="checkbox" value="1" class="chb_input" name="field1_5"><div class="chb_new"></div>
+                <label for="answer1_5" class="lbl_pos">{{v1_5}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_5"  type="checkbox" value="2" class="chb_input" name="field2_5"><div class="chb_new"></div>
+                <label for="answer2_5" class="lbl_pos">{{v2_5}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_5"  type="checkbox" value="3" class="chb_input" name="field3_5"><div class="chb_new"></div>
+                <label for="answer3_5" class="lbl_pos">{{v3_5}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_5 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_5"  type="checkbox" value="4" class="chb_input"  name="field4_5"><div class="chb_new"></div>
+                <label for="answer4_5" class="lbl_pos">{{v4_5}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_5 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_5"  type="checkbox" value="5" class="chb_input" name="field5_5"><div class="chb_new"></div>
+                <label for="answer5_5" class="lbl_pos">{{v5_5}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_5 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_5"  type="checkbox" value="6" class="chb_input" name="field6_5"><div class="chb_new"></div>
+                <label for="answer6_5" class="lbl_pos">{{v6_5}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(5), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_5 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop5">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_5-->
+                <div class="modal fade" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel5">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_5|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Шестой вопрос-->
+
+    <div id="6" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 6</h5>
+            <h5>{{q_6}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_6"  type="checkbox" value="1" class="chb_input" name="field1_6"><div class="chb_new"></div>
+                <label for="answer1_6" class="lbl_pos">{{v1_6}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_6"  type="checkbox" value="2" class="chb_input" name="field2_6"><div class="chb_new"></div>
+                <label for="answer2_6" class="lbl_pos">{{v2_6}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_6"  type="checkbox" value="3" class="chb_input" name="field3_6"><div class="chb_new"></div>
+                <label for="answer3_6" class="lbl_pos">{{v3_6}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_6 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_6"  type="checkbox" value="4" class="chb_input"  name="field4_6"><div class="chb_new"></div>
+                <label for="answer4_6" class="lbl_pos">{{v4_6}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_6 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_6"  type="checkbox" value="5" class="chb_input" name="field5_6"><div class="chb_new"></div>
+                <label for="answer5_6" class="lbl_pos">{{v5_6}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_6 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_6"  type="checkbox" value="6" class="chb_input" name="field6_6"><div class="chb_new"></div>
+                <label for="answer6_6" class="lbl_pos">{{v6_6}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(6), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_6 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop6">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_6-->
+                <div class="modal fade" id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel6" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel6">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_6|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Седьмой вопрос-->
+
+    <div id="7" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 7</h5>
+            <h5>{{q_7}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_7"  type="checkbox" value="1" class="chb_input" name="field1_7"><div class="chb_new"></div>
+                <label for="answer1_7" class="lbl_pos">{{v1_7}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_7"  type="checkbox" value="2" class="chb_input" name="field2_7"><div class="chb_new"></div>
+                <label for="answer2_7" class="lbl_pos">{{v2_7}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_7"  type="checkbox" value="3" class="chb_input" name="field3_7"><div class="chb_new"></div>
+                <label for="answer3_7" class="lbl_pos">{{v3_7}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_7 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_7"  type="checkbox" value="4" class="chb_input"  name="field4_7"><div class="chb_new"></div>
+                <label for="answer4_7" class="lbl_pos">{{v4_7}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_7 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_7"  type="checkbox" value="5" class="chb_input" name="field5_7"><div class="chb_new"></div>
+                <label for="answer5_7" class="lbl_pos">{{v5_7}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_7 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_7"  type="checkbox" value="6" class="chb_input" name="field6_7"><div class="chb_new"></div>
+                <label for="answer6_7" class="lbl_pos">{{v6_7}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(7), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_7 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop7">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_7-->
+                <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel7" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel7">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_7|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Восьмой вопрос-->
+
+    <div id="8" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 8</h5>
+            <h5>{{q_8}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_8"  type="checkbox" value="1" class="chb_input" name="field1_8"><div class="chb_new"></div>
+                <label for="answer1_8" class="lbl_pos">{{v1_8}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_8"  type="checkbox" value="2" class="chb_input" name="field2_8"><div class="chb_new"></div>
+                <label for="answer2_8" class="lbl_pos">{{v2_8}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_8"  type="checkbox" value="3" class="chb_input" name="field3_8"><div class="chb_new"></div>
+                <label for="answer3_8" class="lbl_pos">{{v3_8}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_8 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_8"  type="checkbox" value="4" class="chb_input"  name="field4_8"><div class="chb_new"></div>
+                <label for="answer4_8" class="lbl_pos">{{v4_8}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_8 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_8"  type="checkbox" value="5" class="chb_input" name="field5_8"><div class="chb_new"></div>
+                <label for="answer5_8" class="lbl_pos">{{v5_8}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_8 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_8"  type="checkbox" value="6" class="chb_input" name="field6_8"><div class="chb_new"></div>
+                <label for="answer6_8" class="lbl_pos">{{v6_8}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(8), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_8 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop8">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_8-->
+                <div class="modal fade" id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel8">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_8|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Девятый вопрос-->
+
+    <div id="9" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 9</h5>
+            <h5>{{q_9}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_9"  type="checkbox" value="1" class="chb_input" name="field1_9"><div class="chb_new"></div>
+                <label for="answer1_9" class="lbl_pos">{{v1_9}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_9"  type="checkbox" value="2" class="chb_input" name="field2_9"><div class="chb_new"></div>
+                <label for="answer2_9" class="lbl_pos">{{v2_9}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_9"  type="checkbox" value="3" class="chb_input" name="field3_9"><div class="chb_new"></div>
+                <label for="answer3_9" class="lbl_pos">{{v3_9}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_9 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_9"  type="checkbox" value="4" class="chb_input"  name="field4_9"><div class="chb_new"></div>
+                <label for="answer4_9" class="lbl_pos">{{v4_9}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_9 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_9"  type="checkbox" value="5" class="chb_input" name="field5_9"><div class="chb_new"></div>
+                <label for="answer5_9" class="lbl_pos">{{v5_9}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_9 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_9"  type="checkbox" value="6" class="chb_input" name="field6_9"><div class="chb_new"></div>
+                <label for="answer6_9" class="lbl_pos">{{v6_9}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(9), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_9 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop9">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_9-->
+                <div class="modal fade" id="staticBackdrop9" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel9" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel9">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_9|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Десятый вопрос-->
+
+    <div id="10" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 10</h5>
+            <h5>{{q_10}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_10"  type="checkbox" value="1" class="chb_input" name="field1_10"><div class="chb_new"></div>
+                <label for="answer1_10" class="lbl_pos">{{v1_10}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_10"  type="checkbox" value="2" class="chb_input" name="field2_10"><div class="chb_new"></div>
+                <label for="answer2_10" class="lbl_pos">{{v2_10}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_10"  type="checkbox" value="3" class="chb_input" name="field3_10"><div class="chb_new"></div>
+                <label for="answer3_10" class="lbl_pos">{{v3_10}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_10 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_10"  type="checkbox" value="4" class="chb_input"  name="field4_10"><div class="chb_new"></div>
+                <label for="answer4_10" class="lbl_pos">{{v4_10}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_10 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_10"  type="checkbox" value="5" class="chb_input" name="field5_10"><div class="chb_new"></div>
+                <label for="answer5_10" class="lbl_pos">{{v5_10}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_10 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_10"  type="checkbox" value="6" class="chb_input" name="field6_10"><div class="chb_new"></div>
+                <label for="answer6_10" class="lbl_pos">{{v6_10}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(10), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_10 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop10">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_10-->
+                <div class="modal fade" id="staticBackdrop10" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel10" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel10">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_10|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Одинадцатый вопрос-->
+
+    <div id="11" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 11</h5>
+            <h5>{{q_11}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_11"  type="checkbox" value="1" class="chb_input" name="field1_11"><div class="chb_new"></div>
+                <label for="answer1_11" class="lbl_pos">{{v1_11}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_11"  type="checkbox" value="2" class="chb_input" name="field2_11"><div class="chb_new"></div>
+                <label for="answer2_11" class="lbl_pos">{{v2_11}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_11"  type="checkbox" value="3" class="chb_input" name="field3_11"><div class="chb_new"></div>
+                <label for="answer3_11" class="lbl_pos">{{v3_11}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_11 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_11"  type="checkbox" value="4" class="chb_input"  name="field4_11"><div class="chb_new"></div>
+                <label for="answer4_11" class="lbl_pos">{{v4_11}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_11 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_11"  type="checkbox" value="5" class="chb_input" name="field5_11"><div class="chb_new"></div>
+                <label for="answer5_11" class="lbl_pos">{{v5_11}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_11 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_11"  type="checkbox" value="6" class="chb_input" name="field6_11"><div class="chb_new"></div>
+                <label for="answer6_11" class="lbl_pos">{{v6_11}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(11), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_11 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop11">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_11-->
+                <div class="modal fade" id="staticBackdrop11" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel11" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel11">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_11|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Двенадцатый вопрос-->
+
+    <div id="12" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 12</h5>
+            <h5>{{q_12}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_12"  type="checkbox" value="1" class="chb_input" name="field1_12"><div class="chb_new"></div>
+                <label for="answer1_12" class="lbl_pos">{{v1_12}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_12"  type="checkbox" value="2" class="chb_input" name="field2_12"><div class="chb_new"></div>
+                <label for="answer2_12" class="lbl_pos">{{v2_12}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_12"  type="checkbox" value="3" class="chb_input" name="field3_12"><div class="chb_new"></div>
+                <label for="answer3_12" class="lbl_pos">{{v3_12}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_12 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_12"  type="checkbox" value="4" class="chb_input"  name="field4_12"><div class="chb_new"></div>
+                <label for="answer4_12" class="lbl_pos">{{v4_12}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_12 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_12"  type="checkbox" value="5" class="chb_input" name="field5_12"><div class="chb_new"></div>
+                <label for="answer5_12" class="lbl_pos">{{v5_12}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_12 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_12"  type="checkbox" value="6" class="chb_input" name="field6_12"><div class="chb_new"></div>
+                <label for="answer6_12" class="lbl_pos">{{v6_12}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(12), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_12 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop12">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_12-->
+                <div class="modal fade" id="staticBackdrop12" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel12" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel12">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_12|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Тринадцатый вопрос-->
+
+    <div id="13" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 13</h5>
+            <h5>{{q_13}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_13"  type="checkbox" value="1" class="chb_input" name="field1_13"><div class="chb_new"></div>
+                <label for="answer1_13" class="lbl_pos">{{v1_13}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_13"  type="checkbox" value="2" class="chb_input" name="field2_13"><div class="chb_new"></div>
+                <label for="answer2_13" class="lbl_pos">{{v2_13}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_13"  type="checkbox" value="3" class="chb_input" name="field3_13"><div class="chb_new"></div>
+                <label for="answer3_13" class="lbl_pos">{{v3_13}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_13 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_13"  type="checkbox" value="4" class="chb_input"  name="field4_13"><div class="chb_new"></div>
+                <label for="answer4_13" class="lbl_pos">{{v4_13}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_13 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_13"  type="checkbox" value="5" class="chb_input" name="field5_13"><div class="chb_new"></div>
+                <label for="answer5_13" class="lbl_pos">{{v5_13}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_13 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_13"  type="checkbox" value="6" class="chb_input" name="field6_13"><div class="chb_new"></div>
+                <label for="answer6_13" class="lbl_pos">{{v6_13}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(13), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_13 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop13">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_13-->
+                <div class="modal fade" id="staticBackdrop13" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel13" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel13">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_13|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Четырнадцатый вопрос-->
+
+    <div id="14" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 14</h5>
+            <h5>{{q_14}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_14"  type="checkbox" value="1" class="chb_input" name="field1_14"><div class="chb_new"></div>
+                <label for="answer1_14" class="lbl_pos">{{v1_14}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_14"  type="checkbox" value="2" class="chb_input" name="field2_14"><div class="chb_new"></div>
+                <label for="answer2_14" class="lbl_pos">{{v2_14}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_14"  type="checkbox" value="3" class="chb_input" name="field3_14"><div class="chb_new"></div>
+                <label for="answer3_14" class="lbl_pos">{{v3_14}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_14 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_14"  type="checkbox" value="4" class="chb_input"  name="field4_14"><div class="chb_new"></div>
+                <label for="answer4_14" class="lbl_pos">{{v4_14}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_14 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_14"  type="checkbox" value="5" class="chb_input" name="field5_14"><div class="chb_new"></div>
+                <label for="answer5_14" class="lbl_pos">{{v5_14}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_14 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_14"  type="checkbox" value="6" class="chb_input" name="field6_14"><div class="chb_new"></div>
+                <label for="answer6_14" class="lbl_pos">{{v6_14}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(14), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_14 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop14">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_14-->
+                <div class="modal fade" id="staticBackdrop14" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel14" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel14">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_14|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Пятнадцатый вопрос-->
+
+    <div id="15" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 15</h5>
+            <h5>{{q_15}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_15"  type="checkbox" value="1" class="chb_input" name="field1_15"><div class="chb_new"></div>
+                <label for="answer1_15" class="lbl_pos">{{v1_15}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_15"  type="checkbox" value="2" class="chb_input" name="field2_15"><div class="chb_new"></div>
+                <label for="answer2_15" class="lbl_pos">{{v2_15}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_15"  type="checkbox" value="3" class="chb_input" name="field3_15"><div class="chb_new"></div>
+                <label for="answer3_15" class="lbl_pos">{{v3_15}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_15 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_15"  type="checkbox" value="4" class="chb_input"  name="field4_15"><div class="chb_new"></div>
+                <label for="answer4_15" class="lbl_pos">{{v4_15}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_15 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_15"  type="checkbox" value="5" class="chb_input" name="field5_15"><div class="chb_new"></div>
+                <label for="answer5_15" class="lbl_pos">{{v5_15}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_15 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_15"  type="checkbox" value="6" class="chb_input" name="field6_15"><div class="chb_new"></div>
+                <label for="answer6_15" class="lbl_pos">{{v6_15}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(15), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_15 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop15">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_15-->
+                <div class="modal fade" id="staticBackdrop15" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel15" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel15">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_15|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Шестнадцатый вопрос-->
+
+    <div id="16" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 16</h5>
+            <h5>{{q_16}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_16"  type="checkbox" value="1" class="chb_input" name="field1_16"><div class="chb_new"></div>
+                <label for="answer1_16" class="lbl_pos">{{v1_16}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_16"  type="checkbox" value="2" class="chb_input" name="field2_16"><div class="chb_new"></div>
+                <label for="answer2_16" class="lbl_pos">{{v2_16}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_16"  type="checkbox" value="3" class="chb_input" name="field3_16"><div class="chb_new"></div>
+                <label for="answer3_16" class="lbl_pos">{{v3_16}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_16 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_16"  type="checkbox" value="4" class="chb_input"  name="field4_16"><div class="chb_new"></div>
+                <label for="answer4_16" class="lbl_pos">{{v4_16}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_16 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_16"  type="checkbox" value="5" class="chb_input" name="field5_16"><div class="chb_new"></div>
+                <label for="answer5_16" class="lbl_pos">{{v5_16}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_16 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_16"  type="checkbox" value="6" class="chb_input" name="field6_16"><div class="chb_new"></div>
+                <label for="answer6_16" class="lbl_pos">{{v6_16}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(16), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_16 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop16">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_16-->
+                <div class="modal fade" id="staticBackdrop16" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel16" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel16">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_16|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Семнадцатый вопрос-->
+
+    <div id="17" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 17</h5>
+            <h5>{{q_17}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_17"  type="checkbox" value="1" class="chb_input" name="field1_17"><div class="chb_new"></div>
+                <label for="answer1_17" class="lbl_pos">{{v1_17}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_17"  type="checkbox" value="2" class="chb_input" name="field2_17"><div class="chb_new"></div>
+                <label for="answer2_17" class="lbl_pos">{{v2_17}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_17"  type="checkbox" value="3" class="chb_input" name="field3_17"><div class="chb_new"></div>
+                <label for="answer3_17" class="lbl_pos">{{v3_17}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_17 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_17"  type="checkbox" value="4" class="chb_input"  name="field4_17"><div class="chb_new"></div>
+                <label for="answer4_17" class="lbl_pos">{{v4_17}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_17 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_17"  type="checkbox" value="5" class="chb_input" name="field5_17"><div class="chb_new"></div>
+                <label for="answer5_17" class="lbl_pos">{{v5_17}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_17 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_17"  type="checkbox" value="6" class="chb_input" name="field6_17"><div class="chb_new"></div>
+                <label for="answer6_17" class="lbl_pos">{{v6_17}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(17), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_17 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop17">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_17-->
+                <div class="modal fade" id="staticBackdrop17" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel17" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel17">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_17|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Восемнадцатый вопрос-->
+
+    <div id="18" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 18</h5>
+            <h5>{{q_18}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_18"  type="checkbox" value="1" class="chb_input" name="field1_18"><div class="chb_new"></div>
+                <label for="answer1_18" class="lbl_pos">{{v1_18}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_18"  type="checkbox" value="2" class="chb_input" name="field2_18"><div class="chb_new"></div>
+                <label for="answer2_18" class="lbl_pos">{{v2_18}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_18"  type="checkbox" value="3" class="chb_input" name="field3_18"><div class="chb_new"></div>
+                <label for="answer3_18" class="lbl_pos">{{v3_18}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_18 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_18"  type="checkbox" value="4" class="chb_input"  name="field4_18"><div class="chb_new"></div>
+                <label for="answer4_18" class="lbl_pos">{{v4_18}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_18 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_18"  type="checkbox" value="5" class="chb_input" name="field5_18"><div class="chb_new"></div>
+                <label for="answer5_18" class="lbl_pos">{{v5_18}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_18 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_18"  type="checkbox" value="6" class="chb_input" name="field6_18"><div class="chb_new"></div>
+                <label for="answer6_18" class="lbl_pos">{{v6_18}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(18), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_18 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop18">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_18-->
+                <div class="modal fade" id="staticBackdrop18" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel18" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel18">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_18|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Девятнадцатый вопрос-->
+
+    <div id="19" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 19</h5>
+            <h5>{{q_19}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_19"  type="checkbox" value="1" class="chb_input" name="field1_19"><div class="chb_new"></div>
+                <label for="answer1_19" class="lbl_pos">{{v1_19}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_19"  type="checkbox" value="2" class="chb_input" name="field2_19"><div class="chb_new"></div>
+                <label for="answer2_19" class="lbl_pos">{{v2_19}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_19"  type="checkbox" value="3" class="chb_input" name="field3_19"><div class="chb_new"></div>
+                <label for="answer3_19" class="lbl_pos">{{v3_19}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_19 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_19"  type="checkbox" value="4" class="chb_input"  name="field4_19"><div class="chb_new"></div>
+                <label for="answer4_19" class="lbl_pos">{{v4_19}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_19 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_19"  type="checkbox" value="5" class="chb_input" name="field5_19"><div class="chb_new"></div>
+                <label for="answer5_19" class="lbl_pos">{{v5_19}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_19 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_19"  type="checkbox" value="6" class="chb_input" name="field6_19"><div class="chb_new"></div>
+                <label for="answer6_19" class="lbl_pos">{{v6_19}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+
+             <div class="col-6">
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" onclick="questionSwitch(19), btnPaint()">Следующий вопрос</button>
+                </div>
+            </div>
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_19 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop19">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_19-->
+                <div class="modal fade" id="staticBackdrop19" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel19" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel19">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_19|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+<!--Двадцатый вопрос-->
+
+    <div id="20" class="container" hidden="">
+        <div class="container mb-4 stab_container_2">
+            <h5>Вопрос № 20</h5>
+            <h5>{{q_20}}</h5>
+        </div>
+
+        <div class="container stab_container">
+
+           <div class="my_checkbox">
+                <input id="answer1_20"  type="checkbox" value="1" class="chb_input" name="field1_20"><div class="chb_new"></div>
+                <label for="answer1_20" class="lbl_pos">{{v1_20}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer2_20"  type="checkbox" value="2" class="chb_input" name="field2_20"><div class="chb_new"></div>
+                <label for="answer2_20" class="lbl_pos">{{v2_20}}</label>
+            </div>
+
+            <div class="my_checkbox">
+                <input id="answer3_20"  type="checkbox" value="3" class="chb_input" name="field3_20"><div class="chb_new"></div>
+                <label for="answer3_20" class="lbl_pos">{{v3_20}}</label>
+            </div>
+
+            <div>
+                {% if hidden_4_20 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer4_20"  type="checkbox" value="4" class="chb_input"  name="field4_20"><div class="chb_new"></div>
+                <label for="answer4_20" class="lbl_pos">{{v4_20}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {% if hidden_5_20 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer5_20"  type="checkbox" value="5" class="chb_input" name="field5_20"><div class="chb_new"></div>
+                <label for="answer5_20" class="lbl_pos">{{v5_20}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                {% if hidden_6_20 %}
+                {% else %}
+                <div class="my_checkbox">
+                <input id="answer6_20"  type="checkbox" value="6" class="chb_input" name="field6_20"><div class="chb_new"></div>
+                <label for="answer6_20" class="lbl_pos">{{v6_20}}</label>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+         <div class="row">
+             {% if ninth_ticket %}
+                <div class="col-6">
+                    <div class="margin">
+                        <button type="button" class="btn btn_paint_3" onclick="questionSwitch(20), btnPaint()">Следующий вопрос</button>
+                    </div>
+                </div>
+             {% else %}
+             <div class="col-6">
+                 <div class="margin">
+                     <button type="button" class="btn btn_paint_3" onclick="questionSwitch(20), btnPaint()" hidden="">Следующий вопрос</button>
+                 </div>
+             </div>
+             {% endif %}
+
+            <div class="col-6 btns_location">
+                <!-- Button trigger modal_20 -->
+                <div class="margin">
+                    <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop20">
+                      <span>Помощь</span>
+                    </button>
+                </div>
+                <!-- Modal_20-->
+                <div class="modal fade" id="staticBackdrop20" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel20" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel20">Помощь</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <span>{{help_text_20|linebreaks}}</span>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% if ninth_ticket %}
+
+<!--Двадцать первый вопрос-->
+
+<div id="21" class="container" hidden="">
+    <div class="container mb-4 stab_container_2">
+        <h5>Вопрос № 21</h5>
+        <h5>{{q_21}}</h5>
+    </div>
+
+    <div class="container stab_container">
+
+       <div class="my_checkbox">
+            <input id="answer1_21"  type="checkbox" value="1" class="chb_input" name="field1_21"><div class="chb_new"></div>
+            <label for="answer1_21" class="lbl_pos">{{v1_21}}</label>
+        </div>
+
+        <div class="my_checkbox">
+            <input id="answer2_21"  type="checkbox" value="2" class="chb_input" name="field2_21"><div class="chb_new"></div>
+            <label for="answer2_21" class="lbl_pos">{{v2_21}}</label>
+        </div>
+
+        <div class="my_checkbox">
+            <input id="answer3_21"  type="checkbox" value="3" class="chb_input" name="field3_21"><div class="chb_new"></div>
+            <label for="answer3_21" class="lbl_pos">{{v3_21}}</label>
+        </div>
+
+        <div>
+            {% if hidden_4_21 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer4_21"  type="checkbox" value="4" class="chb_input"  name="field4_21"><div class="chb_new"></div>
+            <label for="answer4_21" class="lbl_pos">{{v4_21}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+        <div>
+            {% if hidden_5_21 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer5_21"  type="checkbox" value="5" class="chb_input" name="field5_21"><div class="chb_new"></div>
+            <label for="answer5_21" class="lbl_pos">{{v5_21}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            {% if hidden_6_21 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer6_21"  type="checkbox" value="6" class="chb_input" name="field6_21"><div class="chb_new"></div>
+            <label for="answer6_21" class="lbl_pos">{{v6_21}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+     <div class="row">
+
+        <div class="col-6">
+            <div class="margin">
+                <button type="button" class="btn btn_paint_3" onclick="questionSwitch(21), btnPaint()">Следующий вопрос</button>
+            </div>
+        </div>
+
+        <div class="col-6 btns_location">
+            <!-- Button trigger modal_21 -->
+            <div class="margin">
+                <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop21">
+                  <span>Помощь</span>
+                </button>
+            </div>
+            <!-- Modal_21-->
+            <div class="modal fade" id="staticBackdrop21" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel21" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel21">Помощь</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <span>{{help_text_21|linebreaks}}</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--Двадцать второй вопрос-->
+
+<div id="22" class="container" hidden="">
+    <div class="container mb-4 stab_container_2">
+        <h5>Вопрос № 22</h5>
+        <h5>{{q_22}}</h5>
+    </div>
+
+    <div class="container stab_container">
+
+       <div class="my_checkbox">
+            <input id="answer1_22"  type="checkbox" value="1" class="chb_input" name="field1_22"><div class="chb_new"></div>
+            <label for="answer1_22" class="lbl_pos">{{v1_22}}</label>
+        </div>
+
+        <div class="my_checkbox">
+            <input id="answer2_22"  type="checkbox" value="2" class="chb_input" name="field2_22"><div class="chb_new"></div>
+            <label for="answer2_22" class="lbl_pos">{{v2_22}}</label>
+        </div>
+
+        <div class="my_checkbox">
+            <input id="answer3_22"  type="checkbox" value="3" class="chb_input" name="field3_22"><div class="chb_new"></div>
+            <label for="answer3_22" class="lbl_pos">{{v3_22}}</label>
+        </div>
+
+        <div>
+            {% if hidden_4_22 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer4_22"  type="checkbox" value="4" class="chb_input"  name="field4_22"><div class="chb_new"></div>
+            <label for="answer4_22" class="lbl_pos">{{v4_22}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+        <div>
+            {% if hidden_5_22 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer5_22"  type="checkbox" value="5" class="chb_input" name="field5_22"><div class="chb_new"></div>
+            <label for="answer5_22" class="lbl_pos">{{v5_22}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            {% if hidden_6_22 %}
+            {% else %}
+            <div class="my_checkbox">
+            <input id="answer6_22"  type="checkbox" value="6" class="chb_input" name="field6_22"><div class="chb_new"></div>
+            <label for="answer6_22" class="lbl_pos">{{v6_22}}</label>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+     <div class="row">
+
+        <div class="col-6">
+            <div class="margin">
+                <button type="button" class="btn btn_paint_3" onclick="questionSwitch(22), btnPaint()" hidden="">Следующий вопрос</button>
+            </div>
+        </div>
+
+        <div class="col-6 btns_location">
+            <!-- Button trigger modal_22 -->
+            <div class="margin">
+                <button type="button" class="btn btn_paint_3" data-bs-toggle="modal" data-bs-target="#staticBackdrop22">
+                  <span>Помощь</span>
+                </button>
+            </div>
+            <!-- Modal_22-->
+            <div class="modal fade" id="staticBackdrop22" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel22" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel22">Помощь</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <span>{{help_text_22|linebreaks}}</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Назад к вопросу</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</form>
+
+<!--Ссылки на вопросы (кнопки)-->
+
+<div class="container mt-3">
+    <div class="row centring">
+        <div id="btn1" onclick="questionSwitch2(1), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>1</span></div>
+        <div id="btn2" onclick="questionSwitch2(2), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>2</span></div>
+        <div id="btn3" onclick="questionSwitch2(3), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>3</span></div>
+        <div id="btn4" onclick="questionSwitch2(4), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>4</span></div>
+        <div id="btn5" onclick="questionSwitch2(5), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>5</span></div>
+        <div id="btn6" onclick="questionSwitch2(6), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>6</span></div>
+        <div id="btn7" onclick="questionSwitch2(7), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>7</span></div>
+        <div id="btn8" onclick="questionSwitch2(8), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>8</span></div>
+        <div id="btn9" onclick="questionSwitch2(9), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>9</span></div>
+        <div id="btn10" onclick="questionSwitch2(10), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span><span>10</span></span></div>
+    </div>
+    <div class="row centring">
+        <div id="btn11" onclick="questionSwitch2(11), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>11</span></div>
+        <div id="btn12" onclick="questionSwitch2(12), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>12</span></div>
+        <div id="btn13" onclick="questionSwitch2(13), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>13</span></div>
+        <div id="btn14" onclick="questionSwitch2(14), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>14</span></div>
+        <div id="btn15" onclick="questionSwitch2(15), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>15</span></div>
+        <div id="btn16" onclick="questionSwitch2(16), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>16</span></div>
+        <div id="btn17" onclick="questionSwitch2(17), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>17</span></div>
+        <div id="btn18" onclick="questionSwitch2(18), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>18</span></div>
+        <div id="btn19" onclick="questionSwitch2(19), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>19</span></div>
+        <div id="btn20" onclick="questionSwitch2(20), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>20</span></div>
+    </div>
+    <div class="row">
+        {% if ninth_ticket %}
+        <div id="btn21" onclick="questionSwitch2(21), btnPaint()" class="col-1 mt-3 text-center btn_paint my_ml"><span>21</span></div>
+        <div id="btn22" onclick="questionSwitch2(22), btnPaint()" class="col-1 mt-3 text-center btn_paint"><span>22</span></div>
+        {% endif %}
+    </div>
+</div>
+
+<footer class="hf_inside mt-3"></footer>
+
+<!--Модальное окно начальное-->
+<div class="modal fade" id="myModalTicket" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalTicketLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModalTicketLabel">Внимание</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <span>Билет состоит из {{num_of_questions}} вопросов.</span>
+                  <span>Необходимо выбрать один или несколько вариантов ответа.</span>
+                  <span>Вы можете отвечать на вопросы в любом порядке.</span>
+                  <span>При затруднении при выборе ответа воспользуйтесь кнопкой "Помощь".</span>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+<!--Модальное окно завершения-->
+<div class="modal fade" id="myModalTicketExit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalTicketExitLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModalTicketExitLabel">Внимание</h1>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <span>Вы не ответили на все вопросы.</span>
+                  <span>Уверены, что хотите завершить?</span>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="exit('my_form_ticket')">Да</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Нет</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+<!--Модальное окно завершения 2-->
+<div class="modal fade" id="myModalTicketExit2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="myModalTicketExit2Label" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="myModalTicketExit2Label">Внимание</h1>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <span>Уверены, что хотите завершить?</span>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="exit('my_form_ticket')">Да</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="">Нет</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+</body>
+
+{% endblock %}
