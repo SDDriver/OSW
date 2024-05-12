@@ -43,8 +43,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['osw-sdmike.amvera.io']
 
+CSRF_TRUSTED_ORIGINS = ['https://osw-sdmike.amvera.io']
 
 # Application definition
 
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
