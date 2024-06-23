@@ -112,12 +112,13 @@ def test_new(request, ticketid):
         for z in range(q_quantity):
             info = Question.objects.get(number=questionid)
             corvar = info.correct_var_number
-            tickets_list_correct.append(corvar.lstrip('0').rstrip('0'))
+            tickets_list_correct.append(corvar.replace('0', '').replace(' ', ''))
             questionid += 1
 
         # Подсчитываем общее кол-во правильных ответов для отображения на странице результата
 
         correct_amount = 0
+
         for i in range(len(tickets_list)):
             if tickets_list[i] == tickets_list_correct[i]:
                 correct_amount += 1
@@ -236,7 +237,7 @@ def exam(request):
         for z in range(20):
             info = Question.objects.get(number=int(questions_num_list[z]))
             corvar = info.correct_var_number
-            tickets_list_correct.append(corvar.lstrip('0').rstrip('0'))
+            tickets_list_correct.append(corvar.replace('0', '').replace(' ', ''))
 
         # Подсчитываем общее кол-во правильных ответов для отображения на странице результата
 

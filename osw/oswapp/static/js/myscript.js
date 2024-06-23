@@ -174,9 +174,15 @@ function full_pass_checking_ticket() {
 	    var check;
 		var checked_flag;
 		var full_check;
+		var questions_quantity;
+		var is_ninth_ticket = document.getElementById('21');
+
+		if (is_ninth_ticket == true) {questions_quantity = 22}
+		else {questions_quantity = 20}
 
 		try {
-            for (i = 0; i < 22; i++) {
+
+            for (i = 0; i < questions_quantity; i++) {
 
                 checked_flag = 0;
 
@@ -185,7 +191,7 @@ function full_pass_checking_ticket() {
                     check = document.getElementById(checkboxes_array[i][x]);
 
                     if (check != null) {
-                        if (check.checked) {checked_flag += 1}
+                        if (check.checked) {checked_flag += 1;}
                         }
                     }
 
@@ -218,8 +224,9 @@ function full_pass_checking_exam() {
 		var checked_flag;
 		var full_check;
 
+
         try {
-            for (i = 0; i < 22; i++) {
+            for (i = 0; i < 20; i++) {
 
                 checked_flag = 0;
 

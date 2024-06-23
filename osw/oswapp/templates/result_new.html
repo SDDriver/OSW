@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row my_checkbox">
         <!--Количество правильных ответов-->
-<!--        <div class="col-1">-->
+<!--       -->
             {% if exam_passed %}
             <span class="ml_span">Экзамен сдан!</span>
             <span class="ml_span">Правильных ответов {{correct_amount}} из {{questions_in_ticket}}</span>
@@ -23,7 +23,7 @@
             {% else %}
             <span class="ml_span">Правильных ответов {{correct_amount}} из {{questions_in_ticket}}</span>
             {% endif %}
-<!--        </div>-->
+<!--        -->
     </div>
     <!--Завершение ознакомления с результатами (для экзамена и билета)-->
     <div class="row my_checkbox">

@@ -1,0 +1,12 @@
+meta:
+  environment: python
+  toolchain:
+    name: pip
+    version: 3.10.12
+build:
+  requirementsPath: requirements.txt
+run:
+  command: cd osw && gunicorn osw.wsgi:application  --bind 0.0.0.0:80
+  scriptName: manage.py
+  persistenceMount: /osw
+  containerPort: 80
